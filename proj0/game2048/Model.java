@@ -147,9 +147,9 @@ public class Model extends Observable {
         if (side != Side.NORTH) {
             board.setViewingPerspective(side);
         }
-        for (int r = board.size() - 1; r >= 0; r--) {
-            for (int c = board.size() - 1; c >= 0; c--) {
-                boolean[] merged = new boolean[board.size()];
+        for (int c = board.size() - 1; c >= 0; c--) {
+            boolean[] merged = new boolean[board.size()];
+            for (int r = board.size() - 1; r >= 0; r--) {
                 Tile t = board.tile(c, r);
                 if (t != null) {
                     boolean toMove = false;
