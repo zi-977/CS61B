@@ -149,6 +149,7 @@ public class Model extends Observable {
         }
         for (int r = board.size() - 1; r >= 0; r--) {
             for (int c = board.size() - 1; c >= 0; c--) {
+                boolean[] merged = new boolean[board.size()];
                 Tile t = board.tile(c, r);
                 if (t != null) {
                     boolean toMove = false;
@@ -158,8 +159,9 @@ public class Model extends Observable {
                         if (pre == null) {
                             toMove = true;
                         } else {
-                            if (pre.value() == t.value()) {
+                            if (pre.value() == t.value() && !merged[ri]) {
                                 board.move(c, ri, t);
+                                merged[ri] = true;
                                 score += 2 * t.value();
                                 toMove = false;
                                 changed = true;
